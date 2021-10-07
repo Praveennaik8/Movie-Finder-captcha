@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    
+    <title>Movie App</title>
+</head>
+<body>
+    
+    <header>
+        <h1>Movie FInder</h1>
+        
+          <form  id="form">
+            <input type="text" placeholder="Search" id="search" class="search">
+        </form>
+    </header>
+    <div class="captcha-box">
+        <canvas id="canvas"></canvas>
+        <span>
+            <input name="code" class="form-control" placeholder="Enter Captcha"></span>
+        
+        <!-- <button id="valid" class="btn btn-danger mt-3">Test</button> -->
+      </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="alphanumeric-captcha/js/jquery-captcha-lgh.js"></script>
+    <script>
+      // step-1
+      const captcha = new Captcha($('#canvas'),{
+        length: 4
+      });
+      // api
+      //captcha.refresh();
+      //captcha.getCode();
+      //captcha.valid("");
+
+      $('#valid').on('click', function() {
+        const ans = captcha.valid($('input[name="code"]').val());
+        alert(ans);
+        captcha.refresh();
+      })
+    </script>
+    <div id="tags"></div>
+    <div id="myNav" class="overlay">
+
+        <!-- Button to close the overlay navigation -->
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      
+        <!-- Overlay content -->
+        <div class="overlay-content" id="overlay-content"></div>
+        
+        <a href="javascript:void(0)" class="arrow left-arrow" id="left-arrow">&#8656;</a> 
+        
+        <a href="javascript:void(0)" class="arrow right-arrow" id="right-arrow" >&#8658;</a>
+
+      </div>
+    <main id="main"></main>
+    <div class="pagination">
+        <div class="page" id="prev">Previous Page</div>
+        <div class="current" id="current">1</div>
+        <div class="page" id="next">Next Page</div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
